@@ -82,7 +82,14 @@ void libera (Lista* l)
 
 int igual (Lista* l1, Lista* l2)
 {
+  if (l1 == NULL && l2 == NULL) return 1;
 
+    if (l1 != NULL && l2 != NULL) {
+        return (l1->info == l2->info
+                && identicalTrees(l1->prox, l2->prox));
+    }
+
+  return 1;
 }
 
 int main (void) 

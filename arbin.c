@@ -66,10 +66,20 @@ int main()
     Arv *root = cria(45, NULL, NULL);
     root->esq = cria(5, NULL, NULL);
     root->dir = cria(80, NULL, NULL);
+    /*resposta questão 3*/
+    root->dir->esq = cria(3, NULL, NULL);
+    root->dir->esq->esq = cria(66, NULL, NULL);
+    root->dir->esq->dir = cria(31, NULL, NULL);
+    /*fim resposta 3*/
     root->dir->dir = cria(40, NULL, NULL);
     root->esq->esq = cria(12, NULL, NULL);
     root->esq->dir = cria(34, NULL, NULL);
     root->esq->dir->dir = cria(67, NULL, NULL);
+
+    /*resposta questão 4*/
+    libera(root->esq->dir);
+    root->esq = cria(5, NULL, NULL);
+    /*fim resposta 4*/
 
     imprime_pre(root);
     printf("\n");
