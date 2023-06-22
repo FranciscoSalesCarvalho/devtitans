@@ -24,8 +24,6 @@ void insere (ArvGen* a, ArvGen* f)
   a->prim = f;
 }
 
-
-
 void libera (ArvGen* a)
 {
   ArvGen* p = a->prim;
@@ -61,7 +59,43 @@ int busca (ArvGen* a, char c)
 
 int main()
 {
-	ArvGen* root = cria(43);
+	ArvGen* _43 = cria(43);
+  ArvGen* _22 = cria(22);
+  ArvGen* _21 = cria(21);
+  ArvGen* _58 = cria(58);
+  ArvGen* _45 = cria(45);
+  ArvGen* _66 = cria(66);
+  ArvGen* _31 = cria(31);
+  ArvGen* _71 = cria(71);
+  ArvGen* _59 = cria(59);
+  ArvGen* _12 = cria(12);
+  ArvGen* _35 = cria(35);
+
+  insere(_22, _66);
+  insere(_22, _31);
+  insere(_43, _22);
+  insere(_43, _21);
+  insere(_58, _71);
+  insere(_58, _59);
+  insere(_58, _12);
+  insere(_43, _58);
+  insere(_45, _35);
+  insere(_43, _45);
+
+  imprime(_43);
+
+  if (busca(_43, 12)) {
+    printf("Numero 12 encontrado\n");
+  } else {
+    printf("Numero 12 nao encontrado\n");
+  }
   
+
+  if (busca(_43, 88)) {
+    printf("Numero 88 encontrado\n");
+  } else {
+    printf("Numero 88 nao encontrado\n");
+  }
+
   return 0;
 }

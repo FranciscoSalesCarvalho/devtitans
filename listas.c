@@ -1,54 +1,56 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-struct lista {
+struct lista
+{
   int info;
-  struct lista* prox;
+  struct lista *prox;
 };
 typedef struct lista Lista;
 
-Lista* inicializa (void)
+Lista *inicializa(void)
 {
   return NULL;
 }
 
-Lista* insere (Lista* l, int i)
+Lista *insere(Lista *l, int i)
 {
-  Lista* novo = (Lista*) malloc(sizeof(Lista));
+  Lista *novo = (Lista *)malloc(sizeof(Lista));
   novo->info = i;
   novo->prox = l;
   return novo;
 }
 
-void imprime (Lista* l)
+void imprime(Lista *l)
 {
-  Lista* p; 
+  Lista *p;
   printf("Lista: ");
   for (p = l; p != NULL; p = p->prox)
     printf("%d  ", p->info);
   printf("\n");
 }
 
-int vazia (Lista* l)
+int vazia(Lista *l)
 {
   return (l == NULL);
 }
 
-Lista* busca (Lista* l, int v)
+Lista *busca(Lista *l, int v)
 {
-  Lista* p;
-  for (p=l; p!=NULL; p=p->prox)
+  Lista *p;
+  for (p = l; p != NULL; p = p->prox)
     if (p->info == v)
       return p;
   return NULL; /* n�o achou o elemento */
 }
 
-
-Lista* retira (Lista* l, int v) 
+Lista *retira(Lista *l, int v)
 {
-  Lista* ant = NULL; /* ponteiro para elemento anterior */
-  Lista* p = l; /* ponteiro para percorrer a lista*/
+  Lista *ant = NULL; /* ponteiro para elemento anterior */
+  Lista *p = l;      /* ponteiro para percorrer a lista*/
   /* procura elemento na lista, guardando anterior */
-  while (p != NULL && p->info != v) {
+  while (p != NULL && p->info != v)
+  {
     ant = p;
     p = p->prox;
   }
@@ -56,11 +58,13 @@ Lista* retira (Lista* l, int v)
   if (p == NULL)
     return l; /* n�o achou: retorna lista original */
   /* retira elemento */
-  if (ant == NULL) {
+  if (ant == NULL)
+  {
     /* retira elemento do inicio */
     l = p->prox;
   }
-  else {
+  else
+  {
     /* retira elemento do meio da lista */
     ant->prox = p->prox;
   }
@@ -68,33 +72,33 @@ Lista* retira (Lista* l, int v)
   return l;
 }
 
-
-void libera (Lista* l)
+void libera(Lista *l)
 {
-  Lista* p = l;
-  while (p != NULL) 
+  Lista *p = l;
+  while (p != NULL)
   {
-    Lista* t = p->prox; /* guarda refer�ncia para o pr�ximo elemento*/
-    free(p); /* libera a mem�ria apontada por p */
-    p = t; /* faz p apontar para o pr�ximo */
+    Lista *t = p->prox; /* guarda refer�ncia para o pr�ximo elemento*/
+    free(p);            /* libera a mem�ria apontada por p */
+    p = t;              /* faz p apontar para o pr�ximo */
   }
 }
 
-int igual (Lista* l1, Lista* l2)
+int igual(Lista *l1, Lista *l2)
 {
-  if (l1 == NULL && l2 == NULL) return 1;
+  if (l1 == NULL && l2 == NULL)
+    return 1;
 
-    if (l1 != NULL && l2 != NULL) {
-        return (l1->info == l2->info
-                && identicalTrees(l1->prox, l2->prox));
-    }
+  if (l1 != NULL && l2 != NULL)
+  {
+    return (l1->info == l2->info && igual(l1->prox, l2->prox));
+  }
 
   return 1;
 }
 
-int main (void) 
+int main(void)
 {
-  Lista* L1, *L2;       /* declara duas listas nao iniciadas */
+  Lista *L1, *L2;      /* declara duas listas nao iniciadas */
   L1 = inicializa();   /* inicia lista vazia */
   L1 = insere(L1, 23); /* insere na lista o elemento 23 */
   L1 = insere(L1, 45); /* insere na lista o elemento 45 */
@@ -125,4 +129,3 @@ int main (void)
   libera(L1);
   libera(L2);
 }
-
